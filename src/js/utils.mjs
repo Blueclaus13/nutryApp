@@ -24,9 +24,9 @@ export function setClick(selector, callback) {
 
 export async function loadHeaderFooter() {
   const footer = document.querySelector("footer");
-  const footerTemplate = await loadTemplate("../partials/footer.html");
+  const footerTemplate = await loadTemplate("partials/footer.html");
   const header = document.querySelector("header");
-  const headerTemplate = await loadTemplate("../partials/header.html");
+  const headerTemplate = await loadTemplate("partials/header.html");
   renderWithTemplate(footerTemplate, footer);
   renderWithTemplate(headerTemplate, header);
 }
