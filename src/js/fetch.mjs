@@ -11,15 +11,16 @@ export default class DataService{
         return this.baseURL;
     }
 
-    async getList(params){
+    async getList(pathName){
         const options = {
             method: 'GET',
             headers: this.headers
           };
         try {
-            const response = await fetch(this.baseURL + `/guessNutrition?title=${params}`, options);
+            const response = await fetch(this.baseURL + pathName, options);
             const result = await response.json();
             console.log(result);
+            return result;
         } catch (error) {
             console.error(error);
         }

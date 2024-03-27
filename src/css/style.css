@@ -22,66 +22,60 @@
     margin: 0;
     font-family: var(--font-body);
     font-size: var(--font-base);
-    color: var(--light-text);
+    color: var(--dark-text);
     background-color: var(--secondary-color);
   }
   
   img {
     max-width: 100%;
   }
-.logo-container{
+  h1,h2,h3{
+    color: var(--dark-text);
+  }
+  .logo-container{
     display: inline-flex;
     align-items: center;
     margin: 0;
     padding: 0;
-}
-.logo-container img{
+ }
+   .logo-container img{
     width: 80px;
-}
-.logo-container h1{
+ }
+  .logo-container h1{
     font-size: var(--large-font);
     color: var(--primary-color);
-}
-
-header{
+ }
+  header{
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     align-items: baseline;
     background-color: var(--secondary-color);
-}
+ }
 
-header ul{
+  header ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     font-family: var(--font-headline);
 
-}
+ }
 
-header ul li {
+  header ul li {
     float: left;
   }
   
-ul li a {
+  ul li a {
     display: block;
     color: var(--tertiary-color);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-}
+ }
 
 a:hover {
     color: var(--primary-color);
     cursor: pointer;
-}
-
-#search-section{
-    background-image: url("../images/flat-lay-mix-vegetables-frame.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    min-height: 250px;
 }
 
 #logging{
@@ -101,3 +95,65 @@ a:hover {
         background-color: var(--secondary-color);
     }
   }
+
+  #search-section{
+    background-image: url("../images/flat-lay-mix-vegetables-frame.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+ }
+ #search-section p{
+    background-color: var(--light-text);
+ }
+
+ #search-section div {
+    max-width: 400px;
+ }
+ .search-selector{
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: stretch;
+ }
+ .search-selector div{
+    /* align-self: flex-end;
+    justify-self: stretch; */
+    display: flex;
+    flex-flow: column-reverse;
+    justify-content: flex-end;
+    gap: 2px;
+    cursor: pointer;
+    border: 2px var(--light-text) ridge;
+    padding: 2px;
+ }
+   .icon{
+    width: 50px;
+   }
+
+   .recipes-list{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0;
+   }
+
+   .recipes-list a{
+    text-decoration: none;
+    color: var(--dark-text);
+   }
+
+   .recipe-card{
+    background-color: var(--light-text);
+    flex: 1 1 45%;
+    margin: 0.25em;
+    padding: 0.5em;
+    border: 1px solid var(--primary-color);
+    max-width: 250px;
+   }
