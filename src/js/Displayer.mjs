@@ -15,6 +15,15 @@ function searchByIngredientsTemplate(){
     `;
 }
 
+function searchByComplexTemplate(){
+    return `
+    <div class="instructions"><p>Please, add a comma-separated list of ingredients that the recipes 
+    should contain</p></div>
+    <input type="text" placeholder="apple,banana,cinnamon">
+    <button class="search-btn">Search</button>
+    `;
+}
+
 function handleSearchButtonByIngredients(){
     const userInput = document.querySelector("input");
     console.log(userInput.value);
@@ -24,6 +33,8 @@ function handleSearchButtonByIngredients(){
         list, 
         getSearchByIngedientsPath(userInput.value));
     recipesdisplayer.init();
+    document.querySelector(".recipes")
+    .insertAdjacentHTML("beforebegin", `<h3>Results of '${userInput.value}'</h3>`);
     userInput.value = "";
 }
 

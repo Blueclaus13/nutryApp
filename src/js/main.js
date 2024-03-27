@@ -16,6 +16,8 @@ function handleByName() {
     document.querySelector("#search-container").innerHTML = "";
     byNameTab.style.backgroundColor = "#4ECDC4";
     byIngredientsTab.style.backgroundColor = "";
+    // const displayer = new Displayer("#search-container", "complex");
+    // displayer.init();
 }
 
 
