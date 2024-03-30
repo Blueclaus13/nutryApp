@@ -157,3 +157,20 @@ a:hover {
     border: 1px solid var(--primary-color);
     max-width: 250px;
    }
+
+   form{
+    text-align:left;
+    display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: .25rem;
+   }
+
+   label {
+	display: block;
+	margin: 5px;
+    }
+
+    input {
+	padding: .25rem;
+	width: 200px;
+    }
