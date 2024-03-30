@@ -1,3 +1,5 @@
+import { renderListWithTemplate } from "../js/utils.mjs";
+
 function cardRecipeTemplate(recipe) {
     const newRecipe = `
     <li class="recipe-card">
@@ -16,7 +18,11 @@ export default class RecipeBook {
     }
     init() {
        const element = document.querySelector(".recipes-list");
-       this.renderRecipes(element);
+       if(this.recipes.length === 0){
+        element.innerHTML += "<p> You haven't added any recipe</p>";
+       }else{
+        this.renderRecipes(element);
+       }
         //this.addListenerToElements();
     }
 
