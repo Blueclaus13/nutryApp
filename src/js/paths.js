@@ -10,3 +10,7 @@ export function getComplexSearchPath(params){
     &sortDirection=desc&number=15
     &limitLicense=false&ranking=2`;
 }
+
+export function getRecipeByID(id){
+    return`/${id}/information`;
+}

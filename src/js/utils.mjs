@@ -66,6 +66,7 @@ export function renderListWithTemplate(
 export function renderTemplate(
   templateFn,
   parentElement,
+  object,
   clear = false,
   position = "afterbegin",
 ) {
@@ -73,5 +74,14 @@ export function renderTemplate(
   if (clear) {
     element.innerHTML = "";
   }
-  element.insertAdjacentHTML(position, templateFn());
+  element.insertAdjacentHTML(position, templateFn(object));
+}
+
+export function getParams(param) {
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const product = urlParams.get(param);
+
+  return product;
 }

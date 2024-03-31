@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nutry App | Home</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="../recipeBook/recipe.js" type="module"></script>
+  </head>
+  <body>
+    <header class="divider">
+    </header>
+    <main class="divider">
+        <h1>Recipe Details</h1>
+        <section class="recipes-detail">
+            <h2>${recipe.title}</h2>
+    <img src="${recipe.image}" alt="${recipe.title}">
+    <p>Ready in: ${recipe.readyInMinutes}</p>
+    <p>servings: ${recipe.servings}</p>
+    <a href="${recipe.sourceUrl}">Link to check source</a>
+    <h5>Diets</h5>
+    <ul>${recipes.diets}</ul>
+    <h5>Ingredients</h5>
+    <h5>Instructions</h5>
+    <p>${recipes.instructions}</p>
+    <h5>Ingredients</h5>
+    <button id="addRecipe">Add to Recipe Book</button>
+        </section>
+    </main>
+    <footer></footer>
+  </body>
+</html>
