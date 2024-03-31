@@ -1,7 +1,7 @@
 import DataService from "../js/fetch.mjs";
 import { getRecipeByID } from "../js/paths";
 import { getLocalStorage, getParams, loadHeaderFooter } from "../js/utils.mjs";
-import RecipeDetails from "./recipeDetails.mjs";
+import RecipeDetails from "./RecipeDetails.mjs";
 
 loadHeaderFooter();
 const localStorage = getLocalStorage("so-cart");
