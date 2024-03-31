@@ -161,8 +161,8 @@ a:hover {
    form{
     text-align:left;
     display: grid;
-	grid-template-columns: 1fr;
-	grid-gap: .25rem;
+	  grid-template-columns: 1fr;
+	  grid-gap: .25rem;
    }
 
    label {
@@ -173,4 +173,43 @@ a:hover {
     input {
 	padding: .25rem;
 	width: 200px;
+    }
+    .recipes-detail{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      grid-template-areas:
+      "title title img img"
+      "details ingredients ingredients ingredients"
+      "details instructions instructions instructions"
+      "nutrition . . ."
+      "nutrition . . .";
+      background-color: var(--light-text)
+    }
+    .recipes-detail h2{
+      grid-area: title;
+      color: var(--primary-color);
+      padding: 10px;
+    }
+    .recipes-detail img{
+      grid-area: img;
+      border: 1px solid var(--primary-color);
+      border-radius: 4px;
+      padding: 5px;
+    }
+    .details{
+      grid-area: details;
+      padding: 10px;
+    }
+    .ingredients{
+      grid-area: ingredients;
+      padding-left: 10px;
+    }
+    .instructions{
+      grid-area: instructions;
+      padding: 10px;
+    }
+    .nutrition{
+      grid-area: nutrition;
+      padding: 10px;
     }

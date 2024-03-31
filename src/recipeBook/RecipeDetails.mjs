@@ -5,20 +5,21 @@ import { getLocalStorage, renderTemplate, setLocalStorage } from "../js/utils.mj
 function recipeTemplate(recipe){
     return `<h2>${recipe.title}</h2>
     <img src="${recipe.image}" alt="${recipe.title}">
-    <p>Ready in: ${recipe.readyInMinutes}</p>
+    <div class="details"><p>Ready in: ${recipe.readyInMinutes}</p>
     <p>servings: ${recipe.servings}</p>
     <h5>Diets</h5>
-    <ul>${recipe.diets}</ul>
-    <h5>Ingredients</h5>
-    <div>${recipe.extendedIngredients.map(i=>{
+    <span>${recipe.diets.map(i=>{
+        return "<p>" + i + "</p>";
+     }).join(" ")}</span></div>
+    <div class="ingredients"><h5>Ingredients</h5>
+    <span>${recipe.extendedIngredients.map(i=>{
        return "<p>" + i.name + "</p>";
-    }).join(" ")}</div>
-    <h5>Instructions</h5>
-    <p>${recipe.instructions}</p>
-    <a href="${recipe.sourceUrl}">Link to check source</a>
-    <h5>Nutrition graphic</h5>
-    
+    }).join(" ")}</span></div>
+    <div class="instructions"><h5>Instructions</h5>
+    <p>${recipe.instructions}</p></div>
+    <h5 class="nutrition">Nutrition graphic</h5>
     <button id="addRecipe">Add to Recipe Book</button>
+    <a href="${recipe.sourceUrl}">Link to check source</a>
     `;
 
 }
@@ -32,9 +33,9 @@ export default class RecipeDetails{
 
     async init() {
         const dataService = new DataService();
-        // this.localStore = getLocalStorage("so-cart");
-        // this.recipe = this.localStore[0];
-        this.recipe = await  dataService.getList(getRecipeByID(this.recipeId));
+        this.localStore = getLocalStorage("so-cart");
+        this.recipe = this.localStore[0];
+        // this.recipe = await  dataService.getList(getRecipeByID(this.recipeId));
         this.renderRecipeDetails(".recipes-detail");
         document
         .getElementById('addRecipe')
