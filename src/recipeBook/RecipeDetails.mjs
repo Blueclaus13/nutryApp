@@ -1,6 +1,6 @@
 import DataService from "../js/fetch.mjs";
 import { getRecipeByID } from "../js/paths";
-import { getLocalStorage, renderTemplate, setLocalStorage } from "../js/utils.mjs";
+import { alertMessage, getLocalStorage, removeAllAlerts, renderTemplate, setLocalStorage } from "../js/utils.mjs";
 
 function recipeTemplate(recipe){
     return `<h2>${recipe.title}</h2>
@@ -43,12 +43,16 @@ export default class RecipeDetails{
     }
 
     addToBook() {
+        removeAllAlerts();
         const isAdded = this.localStore.find(item => item.id === this.recipeId) === undefined;
         if(isAdded){
-            console.log("Alert, it's already added in Recipe book")
+            //console.log("Alert, it's already added in Recipe book");
+            alertMessage("Recipe is already added in Recipe book");
         }else{
+            
             this.localStore.push(this.product)
             setLocalStorage("so-cart", this.localStore);
+            alertMessage("Added to Recipe Book");
         }
 
         
