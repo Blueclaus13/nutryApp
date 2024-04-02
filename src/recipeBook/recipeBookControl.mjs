@@ -3,7 +3,7 @@ import { renderListWithTemplate } from "../js/utils.mjs";
 function cardRecipeTemplate(recipe) {
     const newRecipe = `
     <li class="recipe-card">
-            <a href="">
+            <a href="../recipeBook/recipe.html?recipe=${recipe.id}">
               <h3 class="recipe-name">${recipe.title}</h3>
               <img src="${recipe.image}" alt="${recipe.title}">
             </a>
@@ -23,7 +23,6 @@ export default class RecipeBook {
        }else{
         this.renderRecipes(element);
        }
-        //this.addListenerToElements();
     }
 
     renderRecipes(element) {

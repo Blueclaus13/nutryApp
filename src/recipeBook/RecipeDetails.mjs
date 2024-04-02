@@ -19,6 +19,7 @@ function recipeTemplate(recipe){
     <p>${recipe.instructions}</p></div>
     <h5 class="nutrition">Nutrition graphic</h5>
     <button id="addRecipe">Add to Recipe Book</button>
+    <button class="hide" id="removeRecipe">Remove from Recipe Book</button>
     <a href="${recipe.sourceUrl}">Link to check source</a>
     `;
 
@@ -29,37 +30,68 @@ export default class RecipeDetails{
         this.recipeId = recipeId;
         this.recipe = {};
         this.localStore = localStore ?? [];
+        this.isInRecipeBook = false;
     }
 
     async init() {
         const dataService = new DataService();
-        this.localStore = getLocalStorage("so-cart");
-        this.recipe = this.localStore[0];
-        // this.recipe = await  dataService.getList(getRecipeByID(this.recipeId));
+        if(this.isInLocalStore()){
+            this.localStore = getLocalStorage("so-cart");
+            this.recipe = this.localStore.find(i=> i.id === parseInt(this.recipeId));
+            console.log(this.recipe)
+            this.isInRecipeBook = true;
+        }else{
+            this.recipe = await  dataService.getList(getRecipeByID(this.recipeId));
+        }
         this.renderRecipeDetails(".recipes-detail");
         document
         .getElementById('addRecipe')
         .addEventListener('click', this.addToBook.bind(this));
+        document
+        .getElementById('removeRecipe')
+        .addEventListener('click', this.removeFromBook.bind(this));
+        this.switchVisibleButtons();
     }
 
     addToBook() {
         removeAllAlerts();
-        const isAdded = this.localStore.find(item => item.id === this.recipeId) === undefined;
-        if(isAdded){
-            //console.log("Alert, it's already added in Recipe book");
-            alertMessage("Recipe is already added in Recipe book");
-        }else{
-            
-            this.localStore.push(this.product)
-            setLocalStorage("so-cart", this.localStore);
-            alertMessage("Added to Recipe Book");
-        }
-
-        
+        this.localStore.push(this.recipe)
+        setLocalStorage("so-cart", this.localStore);
+        alertMessage("Added to Recipe Book");
+        this.isInRecipeBook = true;
+        this.switchVisibleButtons();
       }
+
+    removeFromBook(){
+        removeAllAlerts();
+        this.localStore.splice(this.localStore.findIndex(a => a.id === parseInt(this.recipeId)) , 1);
+        setLocalStorage("so-cart", this.localStore);
+        alertMessage("Removed from Recipe Book");
+        this.isInRecipeBook = false;
+        this.switchVisibleButtons();
+      }
+
+    isInLocalStore(){
+        return this.localStore.some(e => e.id === parseInt(this.recipeId));
+      }
+    switchVisibleButtons(){
+        const addBtn = document.querySelector("#addRecipe");
+        const removeBtn = document.querySelector("#removeRecipe");
+        if(this.isInRecipeBook){
+            removeBtn.classList.remove("hide")
+            addBtn.classList.add("hide");
+        }else{
+            addBtn.classList.remove("hide")
+            removeBtn.classList.add("hide");
+        }
+    }
 
     renderRecipeDetails(selector) {
         renderTemplate(recipeTemplate, selector, this.recipe, true);
+    }
+
+    renderNutrition(){
+
     }
 
 }

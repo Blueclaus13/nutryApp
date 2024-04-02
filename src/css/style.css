@@ -250,3 +250,7 @@ a:hover {
     .alert span:hover{
       background-color: var(--primary-color);
     }
+
+    .hide{
+      display: none;
+    }

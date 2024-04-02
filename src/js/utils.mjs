@@ -86,6 +86,20 @@ export function getParams(param) {
   return product;
 }
 
+export function isParam(param) {
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.has(param);
+}
+
+export function getAllParams(){
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.keys();
+}
+
 export function alertMessage(message, color = "#FF6B6B", scroll=true){
   const alert = document.createElement('div');
   alert.classList.add('alert');
