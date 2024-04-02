@@ -29,14 +29,4 @@ export default class RecipeBook {
         renderListWithTemplate(cardRecipeTemplate, element, this.recipes);
     }
 
-    addListenerToElements() {
-        // console.log(this.getProductsId());
-        // const listId = this.getProductsId();
-        // listId.forEach(element => {
-        //   document
-        //     .getElementById(element)
-        //     .addEventListener('click', this.deleteItem.bind(this));
-        // });
-    }
-
 }

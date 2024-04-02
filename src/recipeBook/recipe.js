@@ -1,6 +1,5 @@
-import DataService from "../js/fetch.mjs";
-import { getRecipeByID } from "../js/paths";
-import { getAllParams, getLocalStorage, getParams, isParam, loadHeaderFooter } from "../js/utils.mjs";
+
+import { getLocalStorage, getParams, loadHeaderFooter } from "../js/utils.mjs";
 import RecipeDetails from "./RecipeDetails.mjs";
 
 

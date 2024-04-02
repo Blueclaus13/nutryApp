@@ -18,12 +18,14 @@ export default class RecipeList{
         this.listElement = listElement;
         this.pathName = pathName;
     }
-    async init(){
+
+    async renderListByIngredientsPath() {
         const list = await this.dataSource.getList(this.pathName);
-        this.renderList(list);
+        renderListWithTemplate(cardRecipeTemplate, this.listElement, list, true);
     }
 
-    renderList(list) {
-        renderListWithTemplate(cardRecipeTemplate, this.listElement, list, true);
+    async renderListBySearchRecipePath() {
+        const list = await this.dataSource.getList(this.pathName);
+        renderListWithTemplate(cardRecipeTemplate, this.listElement, list.results, true);
     }
 }

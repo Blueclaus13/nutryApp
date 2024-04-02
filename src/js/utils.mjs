@@ -37,6 +37,12 @@ async function loadTemplate(path) {
   return template;
 }
 
+export async function loadSearch(path){
+  const form = document.querySelector("form");
+  const formTemplate = await loadTemplate(path);
+  renderWithTemplate(formTemplate, form);
+}
+
 export function renderWithTemplate(
   template,
   parentElement,
@@ -84,20 +90,6 @@ export function getParams(param) {
   const product = urlParams.get(param);
 
   return product;
-}
-
-export function isParam(param) {
-
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  return urlParams.has(param);
-}
-
-export function getAllParams(){
-
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  return urlParams.keys();
 }
 
 export function alertMessage(message, color = "#FF6B6B", scroll=true){

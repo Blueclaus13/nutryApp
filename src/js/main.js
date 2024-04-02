@@ -5,7 +5,7 @@ import {getSearchByIngedientsPath} from "./paths";
 import Displayer from "./Displayer.mjs";
 
 function handleByIngredients() {
-    document.querySelector("#search-container").innerHTML = "";
+    document.querySelector("form").innerHTML = "";
     byIngredientsTab.style.backgroundColor = "#4ECDC4";
     byNameTab.style.backgroundColor = "";
     const displayer = new Displayer("#search-container", "ingredients");
@@ -13,11 +13,11 @@ function handleByIngredients() {
 }
 
 function handleByName() {
-    document.querySelector("#search-container").innerHTML = "";
+    document.querySelector("form").innerHTML = "";
     byNameTab.style.backgroundColor = "#4ECDC4";
     byIngredientsTab.style.backgroundColor = "";
-    // const displayer = new Displayer("#search-container", "complex");
-    // displayer.init();
+    const displayer = new Displayer("form", "complex");
+    displayer.init();
 }
 
 
