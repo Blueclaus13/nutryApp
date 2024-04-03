@@ -1,11 +1,12 @@
 <fieldset>
     <label for="name">Recipe name</label>
-    <input id="name" type="text" required>
+    <input id="name" type="text" name="name"  placeholder="E.g. Pasta" required>
   </fieldset>
-  <fieldset id="complexSearch">
+  <p>Optional fields to make a complex search</p>
+  <fieldset id="complexSearch" class="">
     <h3>Detailed Search</h3>
     <label for="maxReadyTime">MaxReadyTime (minutes): </label>
-    <input name="maxReadyTime" id="maxReadyTime" type="number" min="0" max="100">
+    <input name="maxReadyTime" id="maxReadyTime" value="20" type="number" min="0" max="100">
     
     <label for="intolerances">Intolerances</label>
     <select name="intolerances" id="intolerances">
@@ -36,10 +37,10 @@
     </select>
 
     <label for="in-ingredients">Include Ingredientes</label>
-    <input id="in-ingredients" type="text" placeholder="apple,banana,cinnamon">
+    <input id="in-ingredients" name="in-ingredients" type="text" placeholder="apple,banana,cinnamon">
 
     <label for="out-ingredients">Exclude Ingredientes</label>
-    <input id="out-ingredients" type="text" placeholder="tomato,coliflower,broccoli">
+    <input id="out-ingredients" type="text" name="out-ingredients" placeholder="tomato,coliflower,broccoli">
 
     <label for="exclude-cuisine">Exclude cuisine</label>
     <select name="cuisine" id="exclude-cuisine">

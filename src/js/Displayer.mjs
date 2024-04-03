@@ -1,28 +1,10 @@
 import RecipeList from "./RecipeListDisplay.mjs";
 import DataService from "./fetch.mjs";
+import FormManager from "./form.mjs";
 import { getComplexSearchPath, getSearchByIngedientsPath } from "./paths";
-import { loadSearch, renderTemplate } from "./utils.mjs";
-
+import { loadSearch} from "./utils.mjs";
 
 const list = document.querySelector(".recipes-list");
-
-function searchByIngredientsTemplate(){
-    return `
-    <div class="instructions"><p>Please, add a comma-separated list of ingredients that the recipes 
-    should contain</p></div>
-    <input type="text" placeholder="apple,banana,cinnamon">
-    <button class="search-btn">Search</button>
-    `;
-}
-
-function handleSearchButtonByIngredients(){
-    
-}
-
-function handleSearchButtonByName(){
-
-}
-
 
 export default class Displayer{
     constructor(parentElement, type){
@@ -31,32 +13,26 @@ export default class Displayer{
     }
 
     init(){
-        const form = document.querySelector('form');  
-        form.addEventListener('submit', this.search.bind(this));
-
+        const parentElement = document.querySelector(this.element);
         if(this.searchType === "ingredients"){
-            // this.displaySearchByIngredients();
-            this.displayComplexSearch("/partials/ingredientsForm.html");
-            //document.querySelector("button").addEventListener("click", handleSearchButtonByIngredients);
+            parentElement.addEventListener('submit', this.search.bind(this));
+            this.displaySearch("/partials/ingredientsForm.html", this.element);
         }else{
-            this.displayComplexSearch("/partials/complexForm.html");
-            //document.querySelector("button").addEventListener("click", handleSearchButtonByName);
+            parentElement.addEventListener('submit', this.search.bind(this));
+            this.displaySearch("/partials/complexForm.html", this.element);
         }
-        
     }
 
-    displaySearchByIngredients(){
-        renderTemplate(searchByIngredientsTemplate, this.element, true);
-    }
-
-    displayComplexSearch(path){
-        loadSearch(path);
+    displaySearch(path, formSelector){
+        loadSearch(path, formSelector);
     }
 
     search(event){
+        const userInput = document.getElementById("name");
         event.preventDefault(); 
+        const formData = new FormManager(this.element);
+        const url =formData.getDatafromComplexSearchForm();
         if(this.searchType === "ingredients"){
-            const userInput = document.querySelector("input");
             console.log(userInput.value);
             const dataService = new DataService();
             const recipesdisplayer = new RecipeList(
@@ -64,21 +40,17 @@ export default class Displayer{
                 list, 
                 getSearchByIngedientsPath(userInput.value));
             recipesdisplayer.renderListByIngredientsPath();
-            document.querySelector(".recipes")
-            .insertAdjacentHTML("beforebegin", `<h3>Results of '${userInput.value}'</h3>`);
-            userInput.value = "";
         } else{
-            const userInput = document.querySelector("input");
-            console.log(userInput.value);
+            console.log(url);
             const dataService = new DataService();
             const recipesdisplayer = new RecipeList(
                 dataService,
                 list, 
-                getComplexSearchPath(userInput.value));
+                getComplexSearchPath(url));
             recipesdisplayer.renderListBySearchRecipePath();
-            document.querySelector(".recipes")
-            .insertAdjacentHTML("beforebegin", `<h3>Results of '${userInput.value}'</h3>`);
-            userInput.value = "";
         }
+        const info =document.getElementById("searchInfo");
+        info.innerHTML = `Result of ${userInput.value}`;
+        userInput.value = "";
     }
 }

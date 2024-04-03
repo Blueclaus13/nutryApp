@@ -37,8 +37,8 @@ async function loadTemplate(path) {
   return template;
 }
 
-export async function loadSearch(path){
-  const form = document.querySelector("form");
+export async function loadSearch(path, formSelector){
+  const form = document.querySelector(formSelector);
   const formTemplate = await loadTemplate(path);
   renderWithTemplate(formTemplate, form);
 }
