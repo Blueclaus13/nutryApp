@@ -1,6 +1,6 @@
 <fieldset>
     <label for="name">Recipe name</label>
-    <input id="name" type="text" name="name"  placeholder="E.g. Pasta" required>
+    <input id="name" type="text" name="name"  placeholder="E.g. Pasta" pattern="[a-zA-Z]+(,\s*[a-zA-Z]+)*" required>
   </fieldset>
   <p>Optional fields to make a complex search</p>
   <fieldset id="complexSearch" class="">
@@ -37,10 +37,10 @@
     </select>
 
     <label for="in-ingredients">Include Ingredientes</label>
-    <input id="in-ingredients" name="in-ingredients" type="text" placeholder="apple,banana,cinnamon">
+    <input id="in-ingredients" name="in-ingredients" type="text" pattern="[a-zA-Z]+(,\s*[a-zA-Z]+)*" placeholder="apple, banana, cinnamon">
 
     <label for="out-ingredients">Exclude Ingredientes</label>
-    <input id="out-ingredients" type="text" name="out-ingredients" placeholder="tomato,coliflower,broccoli">
+    <input id="out-ingredients" type="text" name="out-ingredients" pattern="[a-zA-Z]+(,\s*[a-zA-Z]+)*" placeholder="tomato, coliflower, broccoli">
 
     <label for="exclude-cuisine">Exclude cuisine</label>
     <select name="cuisine" id="exclude-cuisine">

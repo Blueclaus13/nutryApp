@@ -1,4 +1,4 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import { emptyIcon, renderListWithTemplate } from "./utils.mjs";
 
 function cardRecipeTemplate(recipe) {
     const newRecipe = `
@@ -18,14 +18,21 @@ export default class RecipeList{
         this.listElement = listElement;
         this.pathName = pathName;
     }
-
-    async renderListByIngredientsPath() {
+    async getListByIngredientsPath(){
         const list = await this.dataSource.getList(this.pathName);
-        renderListWithTemplate(cardRecipeTemplate, this.listElement, list, true);
+        return list;
+    }
+    async getListByComplexPath(){
+        const list = await this.dataSource.getList(this.pathName);
+        return list.results;
     }
 
-    async renderListBySearchRecipePath() {
-        const list = await this.dataSource.getList(this.pathName);
-        renderListWithTemplate(cardRecipeTemplate, this.listElement, list.results, true);
+    async renderList( listD) {
+        const list = await listD;
+        if(list.length === 0){
+            emptyIcon(this.listElement, "Not results for search");
+        }else{
+            renderListWithTemplate(cardRecipeTemplate, this.listElement, list, true);
+        }
     }
 }

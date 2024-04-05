@@ -1,6 +1,6 @@
 <fieldset class="instructions">
     <p>Please, add a comma-separated list of ingredients that the recipes 
     should contain</p></div>
-    <input id="name" type="text" placeholder="apple,banana,cinnamon">
+    <input required id="name" type="text" name="name" pattern="[a-zA-Z]+(,\s*[a-zA-Z]+)*" placeholder="apple, banana, cinnamon">
     <button class="search-btn">Search</button>
 </fieldset>

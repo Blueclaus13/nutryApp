@@ -25,7 +25,7 @@ function recipeTemplate(recipe){
     <div class="buttons">
     <button id="addRecipe">Add to Recipe Book</button>
     <button class="hide" id="removeRecipe">Remove from Recipe Book</button>
-    <a href="${recipe.sourceUrl}">Link to check source</a></div>
+    <a href="${recipe.sourceUrl}">Source Link</a></div>
     `;
 
 }
@@ -84,7 +84,7 @@ export default class RecipeDetails{
         removeAllAlerts();
         this.localStore.push(this.recipe)
         setLocalStorage("so-cart", this.localStore);
-        alertMessage("Added to Recipe Book");
+        alertMessage("Added to Recipe Book", "#4ECDC4");
         this.isInRecipeBook = true;
         this.switchVisibleButtons();
       }

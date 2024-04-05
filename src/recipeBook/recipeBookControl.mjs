@@ -1,4 +1,4 @@
-import { renderListWithTemplate } from "../js/utils.mjs";
+import { renderListWithTemplate, emptyIcon } from "../js/utils.mjs";
 
 function cardRecipeTemplate(recipe) {
     const newRecipe = `
@@ -19,7 +19,7 @@ export default class RecipeBook {
     init() {
        const element = document.querySelector(".recipes-list");
        if(this.recipes.length === 0){
-        element.innerHTML += "<p> You haven't added any recipe</p>";
+        emptyIcon(element, "Empty Recipe Book");
        }else{
         this.renderRecipes(element);
        }
@@ -28,5 +28,4 @@ export default class RecipeBook {
     renderRecipes(element) {
         renderListWithTemplate(cardRecipeTemplate, element, this.recipes);
     }
-
 }

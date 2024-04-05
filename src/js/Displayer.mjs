@@ -20,8 +20,7 @@ export default class Displayer{
         }else{
             parentElement.addEventListener('submit', this.search.bind(this));
             this.displaySearch("/partials/complexForm.html", this.element);
-        }
-    }
+}}
 
     displaySearch(path, formSelector){
         loadSearch(path, formSelector);
@@ -32,22 +31,21 @@ export default class Displayer{
         event.preventDefault(); 
         const formData = new FormManager(this.element);
         const url =formData.getDatafromComplexSearchForm();
+        const dataService = new DataService();
         if(this.searchType === "ingredients"){
-            console.log(userInput.value);
-            const dataService = new DataService();
             const recipesdisplayer = new RecipeList(
                 dataService,
                 list, 
                 getSearchByIngedientsPath(userInput.value));
-            recipesdisplayer.renderListByIngredientsPath();
+            const listData = recipesdisplayer.getListByIngredientsPath();
+            recipesdisplayer.renderList(listData);
         } else{
-            console.log(url);
-            const dataService = new DataService();
             const recipesdisplayer = new RecipeList(
                 dataService,
                 list, 
                 getComplexSearchPath(url));
-            recipesdisplayer.renderListBySearchRecipePath();
+            const listData = recipesdisplayer.getListByComplexPath();
+            recipesdisplayer.renderList(listData);
         }
         const info =document.getElementById("searchInfo");
         info.innerHTML = `Result of ${userInput.value}`;

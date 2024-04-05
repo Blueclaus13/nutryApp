@@ -1,3 +1,5 @@
+import { alertMessage, removeAllAlerts } from "./utils.mjs";
+
 export default class FormManager{
     constructor(formSelector){
         this.formElement = document.querySelector(formSelector); 
@@ -6,9 +8,7 @@ export default class FormManager{
 
     getDatafromComplexSearchForm(){
         //let formValues = [...this.formData];
-        if(this.formData.get("name") === ""){
-            result
-        }
+        
         const listParams = {
             query: this.formData.get("name"),
             maxReadyTime: this.formData.get("maxReadyTime"),
@@ -26,6 +26,15 @@ export default class FormManager{
       const url = Object.keys(result).map(key => key + "=" + result[key]).join("&");
         
         return url;
+    }
+
+    validateSearchRecipe(){
+        removeAllAlerts();
+        if(this.formData.get("name") === ""){
+            alertMessage("Name must be filled out");
+            // this.formElement.name.document.style
+            return false;
+        }
     }
 
 }

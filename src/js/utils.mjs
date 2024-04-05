@@ -111,3 +111,11 @@ export function removeAllAlerts() {
   const alerts = document.querySelectorAll(".alert");
   alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
 }
+
+export function emptyIcon(parentElement, message){
+    const template =`<div id="img_container">
+    <img class="grow"src="/images/emptyBook.png" alt="https://www.freepik.com/search">
+    <h3>${message}</h3>
+    </div>`;
+    parentElement.insertAdjacentHTML("beforebegin", template);
+}
