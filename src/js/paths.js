@@ -9,3 +9,7 @@ export function getComplexSearchPath(params){
 export function getRecipeByID(id){
     return`/${id}/information`;
 }
+
+export function getNutritionByID(id){
+    return `/${id}/nutritionWidget.json`;
+}

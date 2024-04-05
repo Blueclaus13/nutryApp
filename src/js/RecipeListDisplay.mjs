@@ -7,7 +7,7 @@ function cardRecipeTemplate(recipe) {
               <h3 class="recipe-name">${recipe.title}</h3>
               <img src="${recipe.image}" alt="${recipe.title}">
             </a>
-          </li>`;
+    </li>`;
     return newRecipe;
 }
 

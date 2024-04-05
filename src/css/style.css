@@ -182,8 +182,8 @@ a:hover {
       "title title img img"
       "details ingredients ingredients ingredients"
       "details instructions instructions instructions"
-      "nutrition . . ."
-      "nutrition . . .";
+      ". . . buttons"
+      "nutrition nutrition nutrition nutrition";
       background-color: var(--light-text)
     }
     .recipes-detail h2{
@@ -211,6 +211,10 @@ a:hover {
     }
     .nutrition{
       grid-area: nutrition;
+      padding: 10px;
+    }
+    .buttons{
+      grid-area: buttons;
       padding: 10px;
     }
 
@@ -253,4 +257,21 @@ a:hover {
 
     .hide{
       display: none;
+    }
+
+    .nutrients{
+      display: flex;
+      flex-flow: row wrap;
+      justify-content:space-around;
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .nutrient{
+      background-color: var(--light-text);
+      flex: 1 1 20%;
+      margin: 0.25em;
+      padding: 0.5em;
+      border: 1px solid var(--primary-color);
+      max-width: 250px;
     }

@@ -1,7 +1,8 @@
 import DataService from "../js/fetch.mjs";
-import { getRecipeByID } from "../js/paths";
-import { alertMessage, getLocalStorage, removeAllAlerts, renderTemplate, setLocalStorage } from "../js/utils.mjs";
+import { getNutritionByID, getRecipeByID } from "../js/paths";
+import { alertMessage, getLocalStorage, removeAllAlerts, renderListWithTemplate, renderTemplate, setLocalStorage } from "../js/utils.mjs";
 
+const dataService = new DataService();
 function recipeTemplate(recipe){
     return `<h2>${recipe.title}</h2>
     <img src="${recipe.image}" alt="${recipe.title}">
@@ -17,11 +18,37 @@ function recipeTemplate(recipe){
     }).join(" ")}</span></div>
     <div class="instructions"><h5>Instructions</h5>
     <p>${recipe.instructions}</p></div>
-    <h5 class="nutrition">Nutrition graphic</h5>
+    <div class="nutrition">
+        <h5>Nutrition Information</h5>
+        <ul class="nutrients"></ul>
+    </div>
+    <div class="buttons">
     <button id="addRecipe">Add to Recipe Book</button>
     <button class="hide" id="removeRecipe">Remove from Recipe Book</button>
-    <a href="${recipe.sourceUrl}">Link to check source</a>
+    <a href="${recipe.sourceUrl}">Link to check source</a></div>
     `;
+
+}
+
+function nutritionTemplate(nutrient){
+    let color = "";
+    if(nutrient.percentOfDailyNeeds >= 60){
+        color = "#FF6B6B";
+    }else if(nutrient.percentOfDailyNeeds >= 30){
+        color = "#FFE66D;";
+    }else{
+        color = "#23afe3";
+    }
+    
+    return`<li class="nutrient">
+            <div class="chart-container">
+                <div class="chart" data-percent=${nutrient.percentOfDailyNeeds} data-bar-color="${color}">
+                    <span class="percent" style="color: ${color}"data-after="%">${nutrient.percentOfDailyNeeds}%</span>
+                </div>
+                <p class="amount" data-after="%">${nutrient.amount} ${nutrient.unit}</p>
+                <p>${nutrient.name} </p>
+            </div>
+        </li>`;
 
 }
 
@@ -34,11 +61,10 @@ export default class RecipeDetails{
     }
 
     async init() {
-        const dataService = new DataService();
         if(this.isInLocalStore()){
             this.localStore = getLocalStorage("so-cart");
             this.recipe = this.localStore.find(i=> i.id === parseInt(this.recipeId));
-            console.log(this.recipe)
+            //console.log(this.recipe)
             this.isInRecipeBook = true;
         }else{
             this.recipe = await  dataService.getList(getRecipeByID(this.recipeId));
@@ -51,6 +77,7 @@ export default class RecipeDetails{
         .getElementById('removeRecipe')
         .addEventListener('click', this.removeFromBook.bind(this));
         this.switchVisibleButtons();
+        this.renderNutrition(".nutrients");
     }
 
     addToBook() {
@@ -90,8 +117,14 @@ export default class RecipeDetails{
         renderTemplate(recipeTemplate, selector, this.recipe, true);
     }
 
-    renderNutrition(){
+    async callNutritionData(){
+        return await  dataService.getList(getNutritionByID(this.recipeId));
+    }
 
+    async renderNutrition(selector){
+        const parentElement = document.querySelector(selector);
+        const nutrientsList = await this.callNutritionData();
+        renderListWithTemplate(nutritionTemplate, parentElement, nutrientsList.nutrients, true);
     }
 
 }
