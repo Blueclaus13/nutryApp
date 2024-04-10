@@ -119,3 +119,9 @@ export function emptyIcon(parentElement, message){
     </div>`;
     parentElement.insertAdjacentHTML("beforebegin", template);
 }
+
+export function deleteElement(parentElement, child){
+  var parent = document.querySelector(parentElement); 
+  var childToRemove = document.querySelector(child); 
+  parent.removeChild(childToRemove);
+}

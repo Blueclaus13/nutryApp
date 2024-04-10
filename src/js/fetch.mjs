@@ -17,20 +17,13 @@ export default class DataService{
             headers: this.headers
           };
         try {
-            const response = await fetch(this.baseURL + pathName, options);
-            const result = await response.json();
-            console.log(result);
-            return result;
+            const res = await fetch(this.baseURL + pathName, options)
+            const response=  await res.json();
+            console.log(response)
+            return response;
         } catch (error) {
-            console.error(error);
+            throw { name: "Service Error", message: error.message}
+            
         }
-    }
-
-    
+    }    
 }
-
-//const fetch = require('node-fetch');
-
-//const url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/guessNutrition?title=Spaghetti%20Aglio%20et%20Olio';
-
-
