@@ -32,22 +32,7 @@ export default class Displayer{
         const formData = new FormManager(this.element);
         const url =formData.getDatafromComplexSearchForm();
         const path = this.searchType === "ingredients" ? getSearchByIngedientsPath(userInput.value) : getComplexSearchPath(url);
-        this.displayList(path)
-        // if(this.searchType === "ingredients"){
-        //     // const recipesdisplayer = new RecipeList(
-        //     //     dataService,
-        //     //     list, 
-        //     //     getSearchByIngedientsPath(userInput.value));
-        //     // const listData = recipesdisplayer.callListByIngredientsPath();
-        //     // recipesdisplayer.renderList(listData);
-        // } else{
-        //     const recipesdisplayer = new RecipeList(
-        //         dataService,
-        //         list, 
-        //         getComplexSearchPath(url));
-        //     const listData = recipesdisplayer.callListByComplexPath();
-        //     recipesdisplayer.renderList(listData);
-        // }
+        this.displayList(path);
         const info =document.getElementById("searchInfo");
         info.innerHTML = `Result of ${userInput.value}`;
         userInput.value = "";

@@ -18,14 +18,6 @@ export default class RecipeList{
         this.listElement = listElement;
         this.pathName = pathName;
     }
-    async ListByIngredientsPath(){
-        const list = await this.dataSource.getList(this.pathName);
-        return list;
-    }
-    async getListByComplexPath(){
-        const list = await this.dataSource.getList(this.pathName);
-        return list.results;
-    }
 
     async renderList( type) {
         var data =  await this.dataSource.getList(this.pathName);
